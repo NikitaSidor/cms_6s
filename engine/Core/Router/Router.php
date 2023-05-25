@@ -1,0 +1,38 @@
+<?php 
+namespace Engine\Core\Router;
+
+class Router
+{
+    private array $routes = [];
+    private $host;
+    private $dispatcher;
+    
+    public function __construct($host)
+    {
+        $this->host = $host;
+    }
+    public function add($key, $pattern, $controller, $method = "GET")
+    {
+        $this->routes[$key] = [
+            'pattern'       => $pattern,
+            'controller'    => $controller,
+            'method'        => $method
+        ];
+    }
+    public function dispatch($method, $uri)
+    {
+        return $this->getDispather()->dispatch($method, $uri);
+    }
+    public function getDispather()
+    {
+        if ($this->dispatcher == null)
+        {
+            $this->dispatcher = new UrlDispatcher();
+            foreach ($this->routes as $route) {
+                $this->dispatcher->register($route['method'], $route['pattern'], $route['controller']);
+            }
+        }
+        return $this->dispatcher;
+    }
+}
+?>
