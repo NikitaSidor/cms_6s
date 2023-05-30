@@ -19,7 +19,7 @@ class View
      */
     public function render(string $template, array $vars= [])
     {
-        $templatePath = ROOT_DIR . '/content/themes/default/' . $template . '.php';
+        $templatePath = $this->getTemplatePath($template, ENV);
         if(!is_file($templatePath)) {
             throw new \InvalidArgumentException(
                 sprintf('Template "%s" not found in "%s', $template, $templatePath)
@@ -36,6 +36,25 @@ class View
             throw $e;
         }
         echo ob_get_clean();
+    }
+    /**
+     * Summary of getTemplatePath
+     * @param mixed $template
+     * @param mixed $env
+     * @return string
+     */
+    private function getTemplatePath($template, $env = null)
+    {
+        switch($env) {
+            case 'Admin':
+                return ROOT_DIR . '/admin/View/' . $template . '.php';
+                break;
+            case 'Cms_6s':
+                return ROOT_DIR . '/content/themes/default/' . $template . '.php';
+                break;
+            default:
+                return ROOT_DIR . '/' . mb_strtolower($env) . '/View/' . $template . '.php';
+        }
     }
 }
 ?>

@@ -1,27 +1,49 @@
-<?php 
+<?php
+
 namespace Engine\DI;
+
+/**
+ * Класс DI (Dependency Injection) для управления зависимостями
+ */
 class DI 
 {
-    
-    private $container = array();
-
-    
-	public function get($key) {
-		return $this->has($key);
-	}
-    
     /**
-     * Summary of set
-     * @param mixed $key
-     * @param mixed $value
-     * @return \engine\DI\DI
+     * @var array Массив зависимостей
      */
-	public function set($key, $value) :self {
-		$this->container[$key] = $value;
+    private array $container = [];
+
+    /**
+     * Получение зависимости по ключу
+     *
+     * @param string $key Ключ зависимости
+     * @return mixed|null Значение зависимости или null, если зависимость не найдена
+     */
+    public function get(string $key)
+    {
+        return $this->has($key);
+    }
+
+    /**
+     * Установка зависимости
+     *
+     * @param string $key Ключ зависимости
+     * @param mixed $value Значение зависимости
+     * @return self
+     */
+    public function set(string $key, $value): self
+    {
+        $this->container[$key] = $value;
         return $this;
-	}
-    public function has($key) {
+    }
+
+    /**
+     * Проверка наличия зависимости по ключу
+     *
+     * @param string $key Ключ зависимости
+     * @return mixed|null Значение зависимости или null, если зависимость не найдена
+     */
+    public function has(string $key)
+    {
         return isset($this->container[$key]) ? $this->container[$key] : null;
     }
 }
-?>
