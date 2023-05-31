@@ -17,10 +17,10 @@ class UserRepository extends Model
     public function test()
     {
         $user = new User;
-        $user->setEmail('user@test.ru')
-            ->setPassword(md5(2222))
-            ->setRole('user')
-            ->save();
+        $user   ->setEmail('user@test.ru')
+                ->setPassword(md5(2222))
+                ->setRole('user')
+                ->save();
     }
 }
 ?>

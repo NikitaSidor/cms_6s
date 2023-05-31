@@ -8,7 +8,6 @@ class PageController extends AdminController
         $pageModel = $this->load->model('Page');
 
         $data['pages'] = $pageModel->repository->getPages();
-
         $this->view->render('pages/list', $data);
     }
     public function create()
@@ -16,5 +15,20 @@ class PageController extends AdminController
         $pageModel = $this->load->model('Page');
         
         $this->view->render('pages/create');
+    }
+
+    public function add()
+    {
+        $params = $this->request->post;
+        $pageModel = $this->load->model('Page');
+        
+        $isPageParam = ['title'];
+        
+        if (isset($params['title'])) {
+            $pageId = $pageModel->repository->createPage($params);
+            echo $pageId;
+        }
+        
+        print_r($params);
     }
 }

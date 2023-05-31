@@ -64,4 +64,12 @@ class Connection
 
         return $sth->fetchAll(PDO::FETCH_ASSOC) ?: [];
     }
+    
+    /**
+     * return insert last id
+     */
+    public function lastInsertId():int
+    {
+        return $this->link->lastInsertId();
+    }
 }
