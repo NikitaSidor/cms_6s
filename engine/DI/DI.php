@@ -46,4 +46,15 @@ class DI
     {
         return isset($this->container[$key]) ? $this->container[$key] : null;
     }
+
+    public function push($key, array $elems = []):void 
+    {
+        if ($this->has($key) !== null) {
+            $this->set($key, []);
+        }
+        
+        if (!empty($elems)) {
+            $this->container[$key][$elems['key']] = $elems['value'];
+        }
+    }
 }

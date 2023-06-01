@@ -1,33 +1,41 @@
 <?php 
 namespace Engine;
 
+use Engine\DI\DI;
+
 class Load
 {
     const MASK_MODEL_ENTITY = '\%s\Model\%s\%s';
     const MASK_MODEL_REPOSITORY = '\%s\Model\%s\%sRepository';
+    public $di;
     
+    public function __construct(DI $di) {
+        $this->di = $di;
+    }
+
     public function model($modelName, $modelDir = false)
     {
-        global $di;
-        
         $modelName = ucfirst($modelName);
-        $model = new \stdClass();
         $modelDir = $modelDir ? $modelDir : $modelName;
         
-        $namespaceEntity = sprintf(
-            self::MASK_MODEL_ENTITY,
-            ENV, $modelDir, $modelName
-        );
+        
 
-        $namespaceRepositiry = sprintf(
+        $namespaceModel = sprintf(
             self::MASK_MODEL_REPOSITORY,
             ENV, $modelDir, $modelName
         );
+        
+        $isClassExists = class_exists($namespaceModel);
+        
+        if ($isClassExists) {
+            // Set to DI
+            $modelRegistry = $this->di->get('model')?: new \stdClass();
+            $modelRegistry->{lcfirst($modelName)} = new $namespaceModel($this->di);
 
-        $model->entity = $namespaceEntity;
-        $model->repository = new $namespaceRepositiry($di);
+            $this->di->set('model', $modelRegistry);
+        }
 
-        return $model;
+        return $isClassExists;
     }
 }
 ?>
