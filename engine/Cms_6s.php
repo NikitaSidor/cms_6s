@@ -31,8 +31,7 @@ class Cms_6s {
             
             $controller = '\\' . ENV . '\\Controller\\'.$class;
             $parameters = $routerDispatch->getParameters();
-
-            call_user_func([new $controller($this->di), $action], $parameters);
+            call_user_func_array([new $controller($this->di), $action], $parameters);
         } catch (\Exception $e) {
             echo $e->getMessage();
             exit;

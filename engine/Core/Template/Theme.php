@@ -70,7 +70,7 @@ class Theme
             $templateFile = ROOT_DIR . '/admin/View/'.$nameFile.'.php';
         }
         if(is_file($templateFile)) {
-            extract($data);
+            extract(array_merge($data, $this->data));
             require_once $templateFile;
         } else {
             throw new \Exception(

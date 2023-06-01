@@ -1,0 +1,19 @@
+# Пакеты #
+############
+# Лучше распаковать эти файлы и зафиксировать исходный код
+# Git имеет свои собственные встроенные методы сжатия.
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+# Игнорировать файлы, созданные Docker Compose
+docker-compose.yml
+docker-compose.yaml
+docker-compose.override.yml
+docker-compose.override.yaml
+# vscode
+**/.vscode/

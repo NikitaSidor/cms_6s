@@ -7,6 +7,7 @@ use Engine\Core\Auth\Auth;
 class AdminController extends Controller
 {
     protected $auth;
+    public array $data = [];
     public function __construct($di) {
         parent::__construct($di);
         
@@ -21,14 +22,6 @@ class AdminController extends Controller
     }
     public function checkAuthorization()
     {
-        /* if ($this->auth->hashUser() !== null) {
-            $this->auth->authorize($this->auth->hashUser());
-        }
-        if (!$this->auth->authorized()) {
-            // redirect
-            header('Location: /admin/login/');
-            exit;
-        } */
     }
     
     public function logout()

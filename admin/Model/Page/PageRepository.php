@@ -12,6 +12,12 @@ class PageRepository extends Model
                                     ->sql();
         return $this->db->query($sql);
     }
+    public function getPageData(int $id) 
+    {
+        $page = new Page($id);
+
+        return $page->findOne();
+    }
     public function createPage($params) 
     {
         $page = new Page;
@@ -19,6 +25,16 @@ class PageRepository extends Model
                 ->setContent($params['content']);
         $pageId = $page ->save();
         return $pageId;
+    }
+    public function updatePage($params) 
+    {
+        if(isset($params['page_id'])) {
+            $page = new Page($params['page_id']);
+            $page   ->setTitle($params['title'])
+                    ->setContent($params['content']);
+            $pageId = $page ->save();
+            return $pageId;
+        }
     }
 }
 ?>
