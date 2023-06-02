@@ -2,12 +2,15 @@
 namespace Engine\Core\Template;
 
 use Engine\Core\Template;
+use Engine\DI\DI;
 
 class View
 {
     protected $theme;
-    public function __construct()
+    public $di;
+    public function __construct(DI $di)
     {
+        $this->di = $di;
         $this->theme = new Theme();
     }
     /**
@@ -25,6 +28,7 @@ class View
                 sprintf('Template "%s" not found in "%s', $template, $templatePath)
             );
         }
+        $vars['lang'] = $this->di->get('language');
         $this->theme->setData($vars);
         extract($vars);
         ob_start();

@@ -34,22 +34,22 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/admin/">
-                            <i class="icon-speedometer icons"></i> Home
+                            <i class="icon-speedometer icons"></i> <?= $lang->menu['home'] ?>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/pages/">
-                            <i class="icon-doc icons"></i> Pages
+                            <i class="icon-doc icons"></i> <?= $lang->menu['pages'] ?>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="icon-pencil icons"></i> Posts
+                        <a class="nav-link" href="/admin/posts/">
+                            <i class="icon-pencil icons"></i> <?= $lang->menu['posts'] ?>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link">
-                            <i class="icon-equalizer icons"></i> Settings
+                        <a class="nav-link" href="/admin/settings/general/">
+                            <i class="icon-equalizer icons"></i> <?= $lang->menu['settings'] ?>
                         </a>
                     </li>
                 </ul>

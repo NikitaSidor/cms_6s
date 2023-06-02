@@ -16,9 +16,10 @@ class AdminController extends Controller
         if ($this->auth->hashUser() == null) {
             header('Location: /admin/login/');
             exit;
-        } else {
-            $this->checkAuthorization();
         }
+
+        // Load global language
+        $this->load->language('menu');
     }
     public function checkAuthorization()
     {

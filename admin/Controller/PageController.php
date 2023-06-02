@@ -7,8 +7,8 @@ class PageController extends AdminController
     {
         $this->load->model('Page');
 
-        $data['pages'] = $this->model->page->getPages();
-        $this->view->render('pages/list', $data);
+        $this->data['pages'] = $this->model->page->getPages();
+        $this->view->render('pages/list', $this->data);
     }
     public function create()
     {

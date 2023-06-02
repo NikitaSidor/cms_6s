@@ -57,12 +57,12 @@ class Connection
      * @param array $values
      * @return array
      */
-    public function query(string $sql, array $values = []): array
+    public function query(string $sql, array $values = [], $statement = PDO::FETCH_ASSOC): array
     {
         $sth = $this->link->prepare($sql);
         $sth->execute($values);
 
-        return $sth->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        return $sth->fetchAll($statement) ?: [];
     }
     
     /**
