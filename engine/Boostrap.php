@@ -1,7 +1,10 @@
 <?php 
 require_once ROOT_DIR . '/vendor/autoload.php';
 require_once ROOT_DIR . '/engine/Function.php';
-    
+
+class_alias('Engine\\Core\\Template\\Asset', 'Asset');
+class_alias('Engine\\Core\\Template\\Theme', 'Theme');
+
 use Engine\Cms_6s;
 use Engine\DI\DI;
 
