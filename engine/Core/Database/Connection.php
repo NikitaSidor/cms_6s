@@ -31,7 +31,7 @@ class Connection
      */
     private function connect(): Connection
     {
-        $config = Config::file('database');
+        $config = Config::group('database');
         $dns = "mysql:host={$config['host']};dbname={$config['db_name']};charset={$config['charset']}";
         $this->link = new PDO($dns, $config['username'], $config['password']);
         return $this;

@@ -1,8 +1,11 @@
 <?php 
 namespace Engine\Core\Template;
 
+use Engine\Core\Config\Config;
+
 class Theme
 {
+    const URL_THEME_MASK = '/content/themes/%s';
     const RULES_NAME_FILE = [
         'header' => 'header-%s',
         'footer' => 'footer-%s',
@@ -10,6 +13,12 @@ class Theme
     ];
     protected static string $url = '';
     protected static array $data = [];
+
+    public static function getUrl($name = null)
+    {
+        $curentTheme = Config::item('defaultTheme', 'main');
+        return sprintf(self::URL_THEME_MASK, $curentTheme);
+    }
     /**
      * Summary of header
      * @param mixed $name

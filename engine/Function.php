@@ -1,17 +1,24 @@
 <?php 
 function path($section)
 {
+    $pathMask = ROOT_DIR . DS . '%s';
+    
+    if (ENV == 'Cms_6s') {
+        $pathMask = ROOT_DIR . DS . strtolower(ENV) . DS . '%s';
+    } else if (ENV == 'Admin') {
+        $pathMask = ROOT_DIR . DS . strtolower(ENV) . DS . '%s';
+    }
     switch (strtolower($section)) {
         case 'controller':
-            return ROOT_DIR . DS . 'Controller';
+            return sprintf($pathMask, 'Controller');
         case 'config':
-            return ROOT_DIR . DS . 'Config';
+            return sprintf($pathMask, 'Config');
         case 'model':
-            return ROOT_DIR . DS . 'Model';
+            return sprintf($pathMask, 'Model');
         case 'view':
-            return ROOT_DIR . DS . 'View';
+            return sprintf($pathMask, 'View');
         case 'language':
-            return ROOT_DIR . DS . 'Language';
+            return sprintf($pathMask, 'Language');
         default:
             return ROOT_DIR;
     }
