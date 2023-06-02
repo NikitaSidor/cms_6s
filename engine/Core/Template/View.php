@@ -1,7 +1,6 @@
 <?php 
 namespace Engine\Core\Template;
 
-use Engine\Core\Template;
 use Engine\DI\DI;
 
 class View
@@ -22,6 +21,7 @@ class View
      */
     public function render(string $template, array $vars= [])
     {
+        include_once static::getThemePath().'/functions.php';
         $templatePath = $this->getTemplatePath($template, ENV);
         if(!is_file($templatePath)) {
             throw new \InvalidArgumentException(
@@ -29,6 +29,7 @@ class View
             );
         }
         $vars['lang'] = $this->di->get('language');
+        
         $this->theme->setData($vars);
         extract($vars);
         ob_start();
@@ -54,6 +55,12 @@ class View
         }
 
         return path('view') . '/' . $template . '.php';
+    
     }
+    private static function getThemePath()
+    {
+        return ROOT_DIR . '/content/themes/default';
+    }
+    
 }
 ?>

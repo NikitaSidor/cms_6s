@@ -8,9 +8,9 @@ s.forEach(a => {
     })
 })
 </script>
-
 <script src="<?= \Engine\Core\Template\Theme::getUrl()?>/assets/js/swiper-bundle.min.js"></script>
 <script src="<?= \Engine\Core\Template\Theme::getUrl()?>/assets/js/main.js" defer></script>
+<? /* Asset::render('js'); */ ?>
 <div class="footer">
     <div class="bubbles" style="overflow-x: clip;">
         <div class="bubble"

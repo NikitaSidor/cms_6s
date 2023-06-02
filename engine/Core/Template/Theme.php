@@ -5,7 +5,7 @@ use Engine\Core\Config\Config;
 
 class Theme
 {
-    const URL_THEME_MASK = '/content/themes/%s';
+    const URL_THEME_MASK = '%s/content/themes/%s';
     const RULES_NAME_FILE = [
         'header' => 'header-%s',
         'footer' => 'footer-%s',
@@ -13,11 +13,18 @@ class Theme
     ];
     protected static string $url = '';
     protected static array $data = [];
+    public $asset;
+    public $theme;
+    public function __construct() {
+        $this->theme = $this;
+        $this->asset = new Asset();
+    }
 
     public static function getUrl($name = null)
     {
         $curentTheme = Config::item('defaultTheme', 'main');
-        return sprintf(self::URL_THEME_MASK, $curentTheme);
+        $baseUrl = Config::item('baseUrl', 'main');
+        return sprintf(self::URL_THEME_MASK, $baseUrl, $curentTheme);
     }
     /**
      * Summary of header
@@ -63,6 +70,10 @@ class Theme
     public static function setData($data) 
     {
         static::$data = $data;
+    }
+    public static function getThemePath()
+    {
+        return ROOT_DIR . '/content/themes/default';
     }
 }
 ?>
