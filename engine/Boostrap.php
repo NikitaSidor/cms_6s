@@ -1,6 +1,7 @@
 <?php 
 require_once ROOT_DIR . '/vendor/autoload.php';
-
+require_once ROOT_DIR . '/engine/Function.php';
+    
 use Engine\Cms_6s;
 use Engine\DI\DI;
 

@@ -41,4 +41,6 @@ $this->router->add('post-update', '/admin/post/update/', 'PostController:update'
 * GET 
 */
 $this->router->add('setting-general', '/admin/settings/general/', 'SettingController:general'); 
+// POST
+$this->router->add('setting-update', '/admin/settings/update/', 'SettingController:updateSetting', "POST"); 
 ?>

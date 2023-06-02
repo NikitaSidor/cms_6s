@@ -9,27 +9,35 @@
                     </h3>
                 </div>
             </div>
-            <form>
+            <form id="settingForm">
                 <? foreach ($settings as $setting): ?>
-                <div class="form-group row">
-                    <label for="siteName" class="col-sm-2 col-form-label"><?= $setting['name'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="siteName" name="<?= $setting['key_field'] ?>" value="<?= $setting['value'] ?>">
-                    </div>
-                </div>
-                <?//print_r($setting)?>
+                    <? if ($setting['key_field'] == 'language'): ?>
+                        <div class="form-group row">
+                            <label for="language" class="col-sm-2 col-form-label"><?= $setting['name'] ?></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="language" name="<?= $setting['key_field'] ?>">
+                                    <? foreach($languages as $language): ?>
+                                        <option value="<?=$language->info->key?>">
+                                            <?=$language->info->title?>
+                                        </option>
+                                    <? endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    <? else: ?>
+                        <div class="form-group row">
+                            <label for="siteName" class="col-sm-2 col-form-label"><?= $setting['name'] ?></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="siteName" name="<?= $setting['key_field'] ?>" value="<?= $setting['value'] ?>">
+                            </div>
+                        </div>
+                    <?endif;?>
                 <? endforeach; ?>
-                <div class="form-group row">
-                    <label for="language" class="col-sm-2 col-form-label">Язык</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="language">
-                        <option>Русский</option>
-                        <option>Английский</option>
-                        <option>Французский</option>
-                        </select>
-                    </div>
-                </div>
+                
             </form>
+                <button type="submit" class="btn btn-primary" onclick="setting.update()">
+                    Обновить
+                </button>
         </div>
     </main>
 
