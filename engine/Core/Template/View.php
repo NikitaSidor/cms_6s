@@ -5,12 +5,16 @@ use Engine\DI\DI;
 
 class View
 {
-    protected $theme;
     public $di;
+    protected $theme;
+    protected $setting;
+    protected $menu;
     public function __construct(DI $di)
     {
         $this->di = $di;
         $this->theme = new Theme();
+        $this->setting = new Setting($di);
+        $this->menu = new Menu($di);
     }
     /**
      * Summary of render
@@ -21,7 +25,10 @@ class View
      */
     public function render(string $template, array $vars= [])
     {
-        include_once static::getThemePath().'/functions.php';
+        $functions = Theme::getThemePath().'/functions.php';
+        if (file_exists($functions)){
+            include_once $functions;
+        }
         $templatePath = $this->getTemplatePath($template, ENV);
         if(!is_file($templatePath)) {
             throw new \InvalidArgumentException(
@@ -57,10 +64,5 @@ class View
         return path('view') . '/' . $template . '.php';
     
     }
-    private static function getThemePath()
-    {
-        return ROOT_DIR . '/content/themes/default';
-    }
-    
 }
 ?>

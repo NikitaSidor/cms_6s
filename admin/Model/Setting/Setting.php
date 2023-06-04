@@ -38,15 +38,15 @@ class Setting
 		return $this;
 	}
     public function getKeyField(): string {
-		return $this->value;
+		return $this->key_field;
 	}
 	
 	/**
-	 * @param  $value 
+	 * @param  $key_field 
 	 * @return self
 	 */
-	public function setKeyField(string $value): self {
-		$this->value = $value;
+	public function setKeyField(string $key_field): self {
+		$this->key_field = $key_field;
 		return $this;
 	}
     public function getValue(): string {

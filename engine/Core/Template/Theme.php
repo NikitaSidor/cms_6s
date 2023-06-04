@@ -59,6 +59,18 @@ class Theme
             Component::load($name, $data);
         }
     }
+    /**
+     * title
+     */
+    public static function title()
+    {
+        return Setting::get('name_site');
+    }
+
+    public static function description()
+    {
+        return Setting::get('description');
+    }
     private static function detectNameFile($name, $function)
     {
         return empty(trim($name)) ? $function : sprintf(self::RULES_NAME_FILE[$function], $name);

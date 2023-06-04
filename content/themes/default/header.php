@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная</title>
+    <title><?= Theme::title() ?></title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
@@ -17,10 +17,9 @@
         <a href="" class="logo"><img src="<?= \Engine\Core\Template\Theme::getUrl()?>/assets/img/logo.png" alt=""></a>
         <div class="menu">
             <ul class="d-flex">
-                <li><a href="/">Главная</a></li>
-                <li><a href="/projects.php">Проекты</a></li>
-                <li><a href="/question.php">Вопрос-ответ</a></li>
-                <li><a href="/about-us.php">О нас</a></li>
+                <?foreach (Menu::getItems() as $item):?>
+                    <li><a href="<?=$item['link']?>"><?=$item['name']?></a></li>
+                <?endforeach?>
             </ul>
         </div>
         <div class="end">
