@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Cms_6s\Model\Menu;
 
 use Engine\Core\Database\ActiveRecord;
@@ -6,90 +7,42 @@ use Engine\Core\Database\ActiveRecord;
 class Menu
 {
     use ActiveRecord;
+
     protected $table = 'menu';
-    protected int $id;
-    protected string $name;
-    protected string $link;
-    protected string $parent;
-    protected string $position;
 
-	/**
-	 * @return 
-	 */
-	public function getId(): int {
-		return $this->id;
-	}
-	
-	/**
-	 * @param  $id 
-	 * @return self
-	 */
-	public function setId(int $id): self {
-		$this->id = $id;
-		return $this;
-	}
+    public $id;
 
-	/**
-	 * @return 
-	 */
-	public function getName(): string {
-		return $this->name;
-	}
-	
-	/**
-	 * @param  $name 
-	 * @return self
-	 */
-	public function setName(string $name): self {
-		$this->name = $name;
-		return $this;
-	}
+    public $name;
 
-	/**
-	 * @return 
-	 */
-	public function getParent(): string {
-		return $this->parent;
-	}
-	
-	/**
-	 * @param  $parent 
-	 * @return self
-	 */
-	public function setParent(string $parent): self {
-		$this->parent = $parent;
-		return $this;
-	}
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return 
-	 */
-	public function getLink(): string {
-		return $this->link;
-	}
-	
-	/**
-	 * @param  $link 
-	 * @return self
-	 */
-	public function setLink(string $link): self {
-		$this->link = $link;
-		return $this;
-	}
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-	/**
-	 * @return 
-	 */
-	public function getPosition(): string {
-		return $this->position;
-	}
-	
-	/**
-	 * @param  $position 
-	 * @return self
-	 */
-	public function setPosition(string $position): self {
-		$this->position = $position;
-		return $this;
-	}
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 }

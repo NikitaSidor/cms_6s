@@ -1,11 +1,15 @@
-<?php 
-namespace Engine\Core\Template;
+<?php
 
-use Exception;
+namespace Engine\Core\Template;
 
 class Component
 {
-    public static function load($name, array $data = [])
+    /**
+     * @param $name
+     * @param array $data
+     * @throws \Exception
+     */
+    public static function load($name, $data = [])
     {
         $templateFile = ROOT_DIR . '/content/themes/default/' . $name . '.php';
 
@@ -15,9 +19,9 @@ class Component
 
         if (is_file($templateFile)) {
             extract(array_merge($data, Theme::getData()));
-            require_once $templateFile;
+            require($templateFile);
         } else {
-            throw new Exception(
+            throw new \Exception(
                 sprintf('View file %s does not exist!', $templateFile)
             );
         }
