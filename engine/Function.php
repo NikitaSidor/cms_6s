@@ -24,7 +24,7 @@ function path($section)
     }
 }
 
-function language()
+function languages()
 {
     $directory = path('language');
     $list = scandir($directory);

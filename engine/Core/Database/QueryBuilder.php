@@ -1,29 +1,24 @@
-<?php 
+<?php
 
 namespace Engine\Core\Database;
 
-/**
- * Class QueryBuilder
- * @package Engine\Core\Database
- */
 class QueryBuilder
 {
     /**
-     * @var array Массив с SQL запросами
+     * @var array
      */
-    protected array $sql = [];
+    protected $sql = [];
 
     /**
-     * @var array Массив с параметрами для подготовленных выражений
+     * @var array
      */
-    public array $values = [];
+    public $values = [];
 
     /**
-     * Метод для формирования запроса SELECT
-     * @param string $fields Список полей через запятую
-     * @return QueryBuilder
+     * @param string $fields
+     * @return $this
      */
-    public function select(string $fields = '*'): QueryBuilder
+    public function select($fields = '*')
     {
         $this->reset();
         $this->sql['select'] = "SELECT {$fields} ";
@@ -32,11 +27,21 @@ class QueryBuilder
     }
 
     /**
-     * Метод для формирования запроса FROM
-     * @param string $table Имя таблицы
-     * @return QueryBuilder
+     * @return $this
      */
-    public function from(string $table): QueryBuilder
+    public function delete()
+    {
+        $this->reset();
+        $this->sql['delete'] = "DELETE ";
+
+        return $this;
+    }
+
+    /**
+     * @param $table
+     * @return $this
+     */
+    public function from($table)
     {
         $this->sql['from'] = "FROM {$table} ";
 
@@ -44,13 +49,12 @@ class QueryBuilder
     }
 
     /**
-     * Метод для формирования запроса WHERE
-     * @param string $column Имя столбца
-     * @param mixed $value Значение
-     * @param string $operator Оператор сравнения
-     * @return QueryBuilder
+     * @param string $column
+     * @param string $value
+     * @param string $operator
+     * @return $this
      */
-    public function where(string $column, $value, string $operator = '='): QueryBuilder
+    public function where($column, $value, $operator = '=')
     {
         $this->sql['where'][] = "{$column} {$operator} ?";
         $this->values[] = $value;
@@ -59,12 +63,11 @@ class QueryBuilder
     }
 
     /**
-     * Метод для формирования запроса ORDER BY
-     * @param string $field Имя поля
-     * @param string $order Направление сортировки (ASC или DESC)
-     * @return QueryBuilder
+     * @param $field
+     * @param $order
+     * @return $this
      */
-    public function orderBy(string $field, string $order): QueryBuilder
+    public function orderBy($field, $order)
     {
         $this->sql['order_by'] = "ORDER BY {$field} {$order}";
 
@@ -72,11 +75,10 @@ class QueryBuilder
     }
 
     /**
-     * Метод для формирования запроса LIMIT
-     * @param int $number Количество записей
-     * @return QueryBuilder
+     * @param $number
+     * @return $this
      */
-    public function limit(int $number): QueryBuilder
+    public function limit($number)
     {
         $this->sql['limit'] = " LIMIT {$number}";
 
@@ -84,18 +86,18 @@ class QueryBuilder
     }
 
     /**
-     * Метод для формирования запроса UPDATE
-     * @param string $table Имя таблицы
-     * @return QueryBuilder
+     * @param $table
+     * @return $this
      */
-    public function update(string $table): QueryBuilder
+    public function update($table)
     {
         $this->reset();
         $this->sql['update'] = "UPDATE {$table} ";
 
         return $this;
     }
-    public function insert(string $table): QueryBuilder
+
+    public function insert($table)
     {
         $this->reset();
         $this->sql['insert'] = "INSERT INTO {$table} ";
@@ -104,37 +106,34 @@ class QueryBuilder
     }
 
     /**
-     * Метод для формирования запроса SET
-     * @param array $data Ассоциативный массив с данными для обновления
-     * @return QueryBuilder
+     * @param array $data
+     * @return $this
      */
-    public function set(array $data = []): QueryBuilder
+    public function set($data = [])
     {
-        $this->sql['set'] = "SET ";
+        $this->sql['set'] .= "SET ";
 
-        if (!empty($data)) {
+        if(!empty($data)) {
             foreach ($data as $key => $value) {
-                $this->sql['set'] .= "$key = ?";
+                $this->sql['set'] .= "{$key} = ?";
                 if (next($data)) {
                     $this->sql['set'] .= ", ";
                 }
-                $this->values[] = $value;
+                $this->values[]    = $value;
             }
-            $this->sql['set'] = rtrim($this->sql['set'], ', ');
         }
 
         return $this;
     }
 
     /**
-     * Метод для формирования SQL запроса
      * @return string
      */
-    public function sql(): string
+    public function sql()
     {
         $sql = '';
 
-        if (!empty($this->sql)) {
+        if(!empty($this->sql)) {
             foreach ($this->sql as $key => $value) {
                 if ($key == 'where') {
                     $sql .= ' WHERE ';
@@ -154,11 +153,11 @@ class QueryBuilder
     }
 
     /**
-     * Метод для сброса массива с SQL запросами и параметрами
+     * Reset Builder
      */
-    public function reset(): void
+    public function reset()
     {
-        $this->sql = [];
+        $this->sql    = [];
         $this->values = [];
     }
 }

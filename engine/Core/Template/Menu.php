@@ -15,10 +15,10 @@ class Menu
     }
     public static function show()
     {
-        
+
     }
     public static function getItems()
     {
-        return self::$menuRepository->getAllItems();
+        return self::$menuRepository->getList();
     }
 }
