@@ -19,6 +19,11 @@ class Load
     public function __construct(DI $di)
     {
         $this->di = $di;
+<<<<<<< HEAD
+=======
+
+        return $this;
+>>>>>>> origin/dev
     }
 
     /**
