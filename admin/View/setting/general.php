@@ -18,10 +18,10 @@
             <div class="col">
                 <form id="settingForm">
                     <?php foreach($settings as $setting):?>
-                        <?php if($setting->key_field == 'language'): ?>
+                        <?php if($setting['key_field'] == 'language'): ?>
                             <div class="form-group row">
                                 <label for="formLangSite" class="col-2 col-form-label">
-                                    <?= $setting->name ?>
+                                    <?= $setting['name'] ?>
                                 </label>
                                 <div class="col-10">
                                     <select class="form-control" name="<?= $setting->key_field ?>" id="formLangSite">
@@ -36,10 +36,10 @@
                         <?php else: ?>
                             <div class="form-group row">
                                 <label for="formNameSite" class="col-2 col-form-label">
-                                    <?= $setting->name ?>
+                                    <?= $setting['name'] ?>
                                 </label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" name="<?= $setting->key_field ?>" value="<?= $setting->value ?>" id="formNameSite">
+                                    <input class="form-control" type="text" name="<?= $setting['key_field'] ?>" value="<?= $setting['value'] ?>" id="formNameSite">
                                 </div>
                             </div>
                         <?php endif; ?>

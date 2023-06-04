@@ -27,8 +27,8 @@
                             <ul class="nav flex-column">
                                 <?php foreach($menus as $menu): ?>
                                     <li class="nav-item">
-                                        <a class="nav-link<?php if ($menuId == $menu->id) echo ' active'; ?>" href="?menu_id=<?php echo $menu->id ?>">
-                                            <?php echo $menu->name ?>
+                                        <a class="nav-link<?php if ($menuId == $menu['id']) echo ' active'; ?>" href="?menu_id=<?php echo $menu['id'] ?>">
+                                            <?php echo $menu['name'] ?>
                                         </a>
                                     </li>
                                 <?php endforeach; ?>

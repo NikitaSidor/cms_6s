@@ -32,7 +32,7 @@ class SettingController extends AdminController
     {
         $params = $this->request->post;
 
-        $this->load->model('Menu', false, 'Cms');
+        $this->load->model('Menu', false, 'Cms_6s');
 
         if (isset($params['name']) && strlen($params['name']) > 0) {
             $addMenu = $this->model->menu->add($params);
@@ -45,7 +45,7 @@ class SettingController extends AdminController
     {
         $params = $this->request->post;
 
-        $this->load->model('MenuItem', false, 'Cms');
+        $this->load->model('MenuItem', false, 'Cms_6s');
 
         if (isset($params['menu_id']) && strlen($params['menu_id']) > 0) {
             $id = $this->model->menuItem->add($params);
@@ -65,7 +65,7 @@ class SettingController extends AdminController
     {
         $params = $this->request->post;
 
-        $this->load->model('MenuItem', false, 'Cms');
+        $this->load->model('MenuItem', false, 'Cms_6s');
 
         if (isset($params['data']) && !empty($params['data'])) {
             $sortItem = $this->model->menuItem->sort($params);
@@ -76,7 +76,7 @@ class SettingController extends AdminController
     {
         $params = $this->request->post;
 
-        $this->load->model('MenuItem', false, 'Cms');
+        $this->load->model('MenuItem', false, 'Cms_6s');
 
         if (isset($params['item_id']) && strlen($params['item_id']) > 0) {
             $removeItem = $this->model->menuItem->remove($params['item_id']);
