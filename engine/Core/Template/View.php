@@ -25,14 +25,10 @@ class View
      */
     public function render(string $template, array $vars= [])
     {
-<<<<<<< HEAD
         $functions = Theme::getThemePath().'/functions.php';
         if (file_exists($functions)){
             include_once $functions;
         }
-=======
-        include_once Theme::getThemePath().'/functions.php';
->>>>>>> origin
         $templatePath = $this->getTemplatePath($template, ENV);
         if(!is_file($templatePath)) {
             throw new \InvalidArgumentException(
