@@ -16,8 +16,13 @@ class Theme
     public $asset;
     public $theme;
     public function __construct() {
+<<<<<<< HEAD
         $this->theme = $this;
         $this->asset = new Asset();
+=======
+        $this->asset = new Asset();
+        $this->theme = $this;
+>>>>>>> origin
     }
 
     public static function getUrl($name = null)
@@ -85,7 +90,11 @@ class Theme
     }
     public static function getThemePath()
     {
+<<<<<<< HEAD
         return ROOT_DIR . '/content/themes/default';
+=======
+        return ROOT_DIR . '/content/themes/default/';
+>>>>>>> origin
     }
 }
 ?>
