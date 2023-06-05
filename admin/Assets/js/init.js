@@ -21,7 +21,6 @@ $(function() {
             var jsonString = JSON.stringify(data, null, ' ');
             var formData = new FormData();
 
-            console.log(data);
 
             formData.append('data', jsonString);
             formData.append('menu_id', $('#sortMenuId').val());
@@ -36,7 +35,7 @@ $(function() {
 
                 },
                 success: function(result){
-
+                    
                 }
             });
 

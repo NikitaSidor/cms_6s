@@ -69,7 +69,6 @@ var menu = {
         if (itemId < 1) {
             return false;
         }
-
         $.ajax({
             url: '/admin/setting/ajaxMenuRemoveItem/',
             type: this.ajaxMethod,
@@ -77,7 +76,6 @@ var menu = {
             processData: false,
             contentType: false,
             beforeSend: function(){
-
             },
             success: function(result){
                 $('.menu-item-' + itemId).remove();

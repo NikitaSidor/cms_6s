@@ -63,7 +63,6 @@ class SettingController extends AdminController
         $params = $this->request->post;
 
         $this->load->model('MenuItem', false, 'Cms_6s');
-
         if (isset($params['data']) && !empty($params['data'])) {
             $sortItem = $this->model->menuItem->sort($params);
         }
@@ -72,13 +71,11 @@ class SettingController extends AdminController
     public function ajaxMenuRemoveItem()
     {
         $params = $this->request->post;
-
         $this->load->model('MenuItem', false, 'Cms_6s');
-
         if (isset($params['item_id']) && strlen($params['item_id']) > 0) {
             $removeItem = $this->model->menuItem->remove($params['item_id']);
 
-            echo $removeItem;
+            return $removeItem;
         }
     }
 

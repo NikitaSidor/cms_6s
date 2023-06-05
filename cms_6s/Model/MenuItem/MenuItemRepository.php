@@ -41,8 +41,8 @@ class MenuItemRepository extends Model
     }
     public function sort(array $params = [])
     {
-        $items = isset($param['data']) ? json_decode($params['data']) : [];
-        if (!empty($items) and isset($item[0])) {
+        $items = isset($params['data']) ? json_decode($params['data']) : [];
+        if (!empty($items) and isset($items[0])) {
             foreach ($items[0] as $position => $item) {
                 $sql = $this->queryBuilder
                     ->update('menu_item')
@@ -54,6 +54,14 @@ class MenuItemRepository extends Model
                     $this->queryBuilder->values
                 );
             }
-        } 
+        }
+    }
+    public function remove(int $itemId)
+    {
+        $sql = $this->queryBuilder ->delete() ->
+            from('menu_item') ->
+            where('id', $itemId) ->
+            sql();
+        return $this->db->query($sql, $this->queryBuilder->values);
     }
 }
