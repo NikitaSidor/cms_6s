@@ -27,8 +27,8 @@
                             <ul class="nav flex-column">
                                 <?php foreach($menus as $menu): ?>
                                     <li class="nav-item">
-                                        <a class="nav-link<?php if ($menuId == $menu['id']) echo ' active'; ?>" href="?menu_id=<?php echo $menu['id'] ?>">
-                                            <?php echo $menu['name'] ?>
+                                        <a class="nav-link<?php if ($menuId == $menu['id']) echo ' active'; ?>" href="?menu_id=<?= $menu['id'] ?>">
+                                            <?= $menu['name'] ?>
                                         </a>
                                     </li>
                                 <?php endforeach; ?>
@@ -46,7 +46,7 @@
                             Edit menu
                         </h4>
                         <br>
-                        <input type="hidden" id="sortMenuId" value="<?php echo $menuId ?>" />
+                        <input type="hidden" id="sortMenuId" value="<?= $menuId ?>" />
                         <ol id="listItems" class="edit-menu">
                             <?php foreach($editMenu as $item) {
                                 Theme::block('setting/menu_item', [
@@ -54,7 +54,7 @@
                                 ]);
                             } ?>
                         </ol>
-                        <button class="add-item-button" onclick="menu.addItem(<?php echo $menuId ?>)">
+                        <button class="add-item-button" onclick="menu.addItem(<?= $menuId ?>)">
                             <i class="icon-plus icons"></i> Add menu item
                         </button>
                     <?php endif; ?>

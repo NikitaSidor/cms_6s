@@ -46,10 +46,11 @@ var menu = {
             processData: false,
             contentType: false,
             beforeSend: function(){
-
+                    console.log('error add menu item');
             },
             success: function(result){
                 if (result) {
+                    console.log(result);
                     _this.listItems.append(result);
                 }
             }

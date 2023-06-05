@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Cms_6s\Model\MenuItem;
 
 use Engine\Core\Database\ActiveRecord;
@@ -6,90 +7,120 @@ use Engine\Core\Database\ActiveRecord;
 class MenuItem
 {
     use ActiveRecord;
+
     protected $table = 'menu_item';
-    protected int $id;
-    protected string $name;
-    protected string $link;
-    protected string $parent;
-    protected string $position;
 
-	/**
-	 * @return 
-	 */
-	public function getId(): int {
-		return $this->id;
-	}
-	
-	/**
-	 * @param  $id 
-	 * @return self
-	 */
-	public function setId(int $id): self {
-		$this->id = $id;
-		return $this;
-	}
+    public $id;
 
-	/**
-	 * @return 
-	 */
-	public function getName(): string {
-		return $this->name;
-	}
-	
-	/**
-	 * @param  $name 
-	 * @return self
-	 */
-	public function setName(string $name): self {
-		$this->name = $name;
-		return $this;
-	}
+    public $menu_id;
 
-	/**
-	 * @return 
-	 */
-	public function getParent(): string {
-		return $this->parent;
-	}
-	
-	/**
-	 * @param  $parent 
-	 * @return self
-	 */
-	public function setParent(string $parent): self {
-		$this->parent = $parent;
-		return $this;
-	}
+    public $name;
 
-	/**
-	 * @return 
-	 */
-	public function getLink(): string {
-		return $this->link;
-	}
-	
-	/**
-	 * @param  $link 
-	 * @return self
-	 */
-	public function setLink(string $link): self {
-		$this->link = $link;
-		return $this;
-	}
+    public $parent;
 
-	/**
-	 * @return
-	 */
-	public function getPosition(): string {
-		return $this->position;
-	}
-	
-	/**
-	 * @param  $position 
-	 * @return self
-	 */
-	public function setPosition(string $position): self {
-		$this->position = $position;
-		return $this;
-	}
+    public $position;
+
+    public $link;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param mixed $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param mixed $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMenuId()
+    {
+        return $this->menu_id;
+    }
+
+    /**
+     * @param mixed $menu_id
+     */
+    public function setMenuId($menu_id)
+    {
+        $this->menu_id = $menu_id;
+        return $this;
+    }
 }

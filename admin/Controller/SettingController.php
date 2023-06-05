@@ -20,8 +20,7 @@ class SettingController extends AdminController
     {
         $this->load->model('Menu', false, 'Cms_6s');
         $this->load->model('MenuItem', false, 'Cms_6s');
-
-        $this->data['menuId']   = $this->request->get['menu_id'];
+        $this->data['menuId']   = empty($this->request->get['menu_id'])?null:$this->request->get['menu_id'];
         $this->data['menus']    = $this->model->menu->getList();
         $this->data['editMenu'] = $this->model->menuItem->getItems($this->data['menuId']);
 
@@ -50,11 +49,9 @@ class SettingController extends AdminController
         if (isset($params['menu_id']) && strlen($params['menu_id']) > 0) {
             $id = $this->model->menuItem->add($params);
 
-            $item = new \stdClass;
-            $item->id   = $id;
-            $item->name = \Cms_6s\Model\MenuItem\MenuItemRepository::NEW_MENU_ITEM_NAME;
-            $item->link = '#';
-
+            $item['id']   = $id;
+            $item['name'] = \Cms_6s\Model\MenuItem\MenuItemRepository::NEW_MENU_ITEM_NAME;
+            $item['link'] = '#';
             Theme::block('setting/menu_item', [
                 'item' => $item
             ]);

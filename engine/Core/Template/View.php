@@ -2,6 +2,7 @@
 namespace Engine\Core\Template;
 
 use Engine\DI\DI;
+use Cms_6s\Model\Menu\Menu;
 
 class View
 {
