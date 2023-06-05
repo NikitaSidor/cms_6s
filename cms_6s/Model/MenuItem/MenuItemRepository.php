@@ -7,6 +7,8 @@ use Engine\Model;
 class MenuItemRepository extends Model
 {
     const NEW_MENU_ITEM_NAME = 'New item';
+    const FIELD_NAME = 'name';
+    const FIELD_LINK = 'link';
 
     /**
      * @param int $menuId
@@ -56,9 +58,28 @@ class MenuItemRepository extends Model
             }
         }
     }
+    public function update (array $params = [])
+    {
+        if (empty($params))
+        {
+            return 0;
+        }
+
+        $menuItem = new MenuItem($params['item_id']);
+
+        if ($params['field'] == self::FIELD_NAME) {
+            $menuItem->setName($params['value']);
+        }
+
+        if ($params['field'] == self::FIELD_LINK) {
+            $menuItem->setLink($params['value']);
+        }
+
+        return $menuItem->save();
+    }
     public function remove(int $itemId)
     {
-        $sql = $this->queryBuilder ->delete() ->
+        $sql = $this->queryBuilder -> delete() ->
             from('menu_item') ->
             where('id', $itemId) ->
             sql();

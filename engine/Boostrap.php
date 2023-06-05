@@ -6,6 +6,7 @@ class_alias('Engine\\Core\\Template\\Asset', 'Asset');
 class_alias('Engine\\Core\\Template\\Theme', 'Theme');
 class_alias('Engine\\Core\\Template\\Setting', 'Setting');
 class_alias('Engine\\Core\\Template\\Menu', 'Menu');
+class_alias('Engine\\Core\\Customize\\Customize', 'Customize');
 
 use Engine\Cms_6s;
 use Engine\DI\DI;

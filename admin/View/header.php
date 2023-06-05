@@ -21,7 +21,6 @@
     <!-- Redactor CSS -->
     <link rel="stylesheet" href="/admin/Assets/js/plugins/redactor/redactor.css">
 </head>
-
 <body>
 <header>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -32,26 +31,15 @@
             <a class="navbar-brand" href="#">Admin CMS</a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/admin/">
-                            <i class="icon-speedometer icons"></i> <?= $lang->menu['home'] ?>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/pages/">
-                            <i class="icon-doc icons"></i> <?= $lang->menu['pages'] ?>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/posts/">
-                            <i class="icon-pencil icons"></i> <?= $lang->menu['posts'] ?>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="/admin/settings/general/">
-                            <i class="icon-equalizer icons"></i> <?= $lang->menu['settings'] ?>
-                        </a>
-                    </li>
+                    <? $menuItems = Customize::getInstance()->getAdminMenuItems();
+                    foreach ($menuItems as $key => $items):?>
+                        <li class="nav-item <? if ($items['urlPath'] == $_SERVER['REQUEST_URI']): ?>active<? endif; ?>">
+                            <a class="nav-link" href="<?= $items['urlPath']?>">
+                                <i class="<?= $items['classIcon']?> icons"></i>
+                                <?= $lang->menu[$key] ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
 

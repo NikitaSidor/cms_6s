@@ -67,7 +67,16 @@ class SettingController extends AdminController
             $sortItem = $this->model->menuItem->sort($params);
         }
     }
+    public function ajaxMenuUpdateItem()
+    {
+        $params = $this->request->post;
 
+        $this->load->model('MenuItem', false, 'Cms_6s');
+        
+        if (isset($params['item_id']) && strlen($params['item_id']) > 0) {
+            $this->model->menuItem->update($params);
+        }
+    }
     public function ajaxMenuRemoveItem()
     {
         $params = $this->request->post;
